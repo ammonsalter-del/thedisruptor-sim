@@ -1,0 +1,22 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary / backup
+*.tmp
+*.bak
+*.log
+*.lock
+
+# Node / build artefacts (not used here but safe defaults)
+node_modules/
+dist/
+build/
