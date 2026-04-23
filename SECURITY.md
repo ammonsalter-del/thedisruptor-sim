@@ -16,7 +16,7 @@ The game does include:
 
 If you discover a security issue — for example, a cross-site scripting (XSS) vulnerability in the HTML, or a problem with how external content is loaded — please report it responsibly.
 
-**Email**: ammonsalter@icloud.com
+**Email**: ammon.salter@wbs.ac.uk
 
 Please include:
 - A description of the vulnerability
