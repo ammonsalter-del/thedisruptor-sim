@@ -3,10 +3,10 @@
 ## Playing the Game
 
 ### How long does a game take?
-A typical game takes 45–60 minutes, depending on how carefully you consider each decision. The tutorial adds an additional 5–10 minutes for first-time players. Reading the Vélox Dynamics case study beforehand takes about 20–30 minutes.
+A fast play gameplay may takes 45–60 minutes, depending on how carefully you consider each decision. However, deeper play may take several hours. There is a save function, so players can start and stop whenever they want. The tutorial adds an additional 5–10 minutes for first-time players. Reading the Vélox Dynamics case study beforehand takes about 20–30 minutes.
 
 ### Can I save my progress?
-The game runs entirely in your browser and does not save progress between sessions. Each playthrough is designed to be completed in a single sitting. If you need to pause, keep the browser tab open — but be aware that refreshing or closing the tab will reset the game.
+The game runs entirely in your browser and does not save progress between sessions. Players must save their progress manually on their local device. When they open this file, they can finish the game at their leisure.
 
 ### Why do I keep getting poor board reviews?
 The board evaluates you on financial metrics, innovation metrics, and organisational metrics simultaneously. Common reasons for poor reviews include:
@@ -15,6 +15,7 @@ The board evaluates you on financial metrics, innovation metrics, and organisati
 - Unbalanced horizon mix (too much Horizon 1 means no transformational bets; too much Horizon 3 means no near-term revenue)
 - Ignoring the Foundation's mission emphasis on health, rehabilitation, and sustainability
 - Underinvesting in capabilities the market demands (AI, data analytics, connectivity)
+- Not achieving key headline and board objectives.
 
 Each failure teaches something. Try different strategies and see how the board responds.
 
@@ -22,10 +23,10 @@ Each failure teaches something. Try different strategies and see how the board r
 There is no single "best" strategy — that's part of the learning. The game is designed around the tension between heritage and disruption, and different approaches to that tension produce different outcomes. The game rewards adaptive thinking and trade-off management rather than a fixed formula.
 
 ### Can I play on mobile?
-Yes, but the experience is optimised for desktop or laptop screens. On mobile devices, some interface elements may be cramped. We recommend landscape orientation if playing on a tablet.
+Yes, but the experience is optimised for desktop or laptop screens. On mobile devices, some interface elements may be cramped. We recommend landscape orientation if playing on a tablet. A laptop or desktop computer is preferred. 
 
 ### Does the game require an internet connection?
-If you download the HTML file from the Releases page, you can play entirely offline. The case study viewer uses a Google Drive link that requires internet, but this is optional — the case study can also be read as a separate PDF or Word document.
+If you download the HTML file from the Releases page, you can play entirely offline. The case study viewer uses a Google Drive link that requires internet, but this is optional — the case study can also be read as a separate PDF. 
 
 ## For Educators
 
@@ -33,7 +34,7 @@ If you download the HTML file from the Releases page, you can play entirely offl
 Yes! The game is licensed under CC BY-NC-SA 4.0, which means you can freely use it for non-commercial educational purposes. Please provide appropriate attribution (see the Citation section in the README).
 
 ### How should I integrate this into my syllabus?
-See the Teaching Guide for detailed lesson plans. The game works well as:
+See the Teaching Note for detailed lesson plans. The game works well as:
 - An experiential introduction to innovation management concepts
 - A companion to the Vélox Dynamics case study for case-based teaching
 - A discussion catalyst for corporate entrepreneurship and R&D strategy topics
@@ -64,8 +65,11 @@ This usually indicates a browser compatibility issue. Please:
 2. Try a different browser
 3. If on mobile, try landscape orientation or switch to desktop
 
+### I would like to add a feature for my course
+This is a free educational resource, created by a small team (a single person!). The developer would welcome suggestions for improvement and additions in future editions. However, they do not have the time or resources to respond to more specific needs. 
+
 ### I found a bug
-Please report it on the [Issues](../../issues) page using the bug report template. Include what you expected to happen, what actually happened, your browser and operating system, and steps to reproduce the issue.
+The software is large and complex and as such te debug process was extensive and long. Of course, like any software, there are many remaining bugs. If you see something that is off, please report it on the [Issues](../../issues) page using the bug report template. Include what you expected to happen, what actually happened, your browser and operating system, and steps to reproduce the issue. We will try to tackle as many as we can in the next round of development. Please do not expect perfection, as even commercial simulations developed by large terms can be quite buggy. This simulation should be seen as an educational prototype rather than a finished commercial product.  
 
 ## Research Use
 
