@@ -33,6 +33,12 @@ If you download the HTML file from the Releases page, you can play entirely offl
 ### Can I use this in my course?
 Yes! The game is licensed under CC BY-NC-SA 4.0, which means you can freely use it for non-commercial educational purposes. Please provide appropriate attribution (see the Citation section in the README).
 
+### Do I need to contact the developer? 
+No! The game is designed to be used by educators without any direct support from the developer. The game has a tutorial, guides, and a range of other mechanisms to help new players. Many players will learn by playing. 
+
+### I have never used a simulation in class and do not play games myself. Is this simulation for me? 
+An educator using the tool does not have expert in the simulation iself, a gamer, or have any technical knowledge or experience with simulations. Implementation is as simple as sharing a website URL. The game will do the heavy lifting all by itself. Students with a gaming background will find the simulation similar to those that they have already played. It is often a good strategy to pair gamers with non-gamers in class to help with onboarding. The simulation and case can used in or outside class. Try to be creative in using the tools. There are some suggestions for use in the teaching pack, but I am sure you can think of others. 
+
 ### How should I integrate this into my syllabus?
 See the Teaching Note for detailed lesson plans. The game works well as:
 - An experiential introduction to innovation management concepts
@@ -46,6 +52,9 @@ We strongly recommend it. The Vélox Dynamics case study (available as a PDF wit
 
 ### Can I modify the game for my teaching context?
 Absolutely. Under the CC BY-NC-SA 4.0 license, you can adapt the game for your needs. Fork the repository, make your changes, and share your adaptations under the same license. We'd love to hear about modifications you create.
+
+### Where is the teaching pack?
+The teaching materials are avialable upon request from ammon.salter@wbs.ac.uk. They include a teaching note, MCQs, assessment options, and a model in-class presentation. They all are free to use and licenced the same as the game. Access restriction is purely based on the need to avoid exposing these materials to students. Please ensure that you do not post these educator materials in a public forum. 
 
 ### Can I translate the game?
 Yes, translations are welcome under the license terms. If you create a translation, please consider contributing it back to the community via the GitHub repository.
@@ -69,7 +78,7 @@ This usually indicates a browser compatibility issue. Please:
 This is a free educational resource, created by a small team (a single person!). The developer would welcome suggestions for improvement and additions in future editions. However, they do not have the time or resources to respond to more specific needs. 
 
 ### I found a bug
-The software is large and complex and as such te debug process was extensive and long. Of course, like any software, there are many remaining bugs. If you see something that is off, please report it on the [Issues](../../issues) page using the bug report template. Include what you expected to happen, what actually happened, your browser and operating system, and steps to reproduce the issue. We will try to tackle as many as we can in the next round of development. Please do not expect perfection, as even commercial simulations developed by large terms can be quite buggy. This simulation should be seen as an educational prototype rather than a finished commercial product.  
+The software is large and complex and as such the debug process was extensive and long. Of course, like any software, there are many remaining bugs. If you see something that is off, please report it on the [Issues](../../issues) page using the bug report template. Include what you expected to happen, what actually happened, your browser and operating system, and steps to reproduce the issue. We will try to tackle as many as we can in the next round of development. Please do not expect perfection, as even commercial simulations developed by large terms can be quite buggy. This simulation should be seen as an educational prototype rather than a finished commercial product.  
 
 ## Research Use
 
