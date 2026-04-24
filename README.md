@@ -61,6 +61,7 @@ Released under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 In
 - Linus Dahlander — ESMT Berlin
 - Hans Frankort — Bayes Business School, City University of London
 - Lars Frederiksen — Aarhus University
+- Christos Kolympiris - Warwick Business School
 - Keld Laursen — Copenhagen Business School
 - Orietta Marsili — University of Bristol
 - Dmitry Sharapov — Imperial College London
