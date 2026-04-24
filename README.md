@@ -51,7 +51,7 @@ Released under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 In
 
 ## Acknowledgments
 
-**Created by:** Ammon Salter, Warwick Business School, University of Warwick.
+**Created and Developed by:** Ammon Salter, Warwick Business School, University of Warwick.
 
 **Contributors:**
 
