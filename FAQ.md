@@ -74,7 +74,7 @@ The software is large and complex and as such te debug process was extensive and
 ## Research Use
 
 ### Can I use this game in a research study?
-Yes, the game can be used for academic research under the license terms. Please cite the game appropriately in any publications. If you're planning experimental research, note that the current version does not include built-in data export or participant tracking — you may need to implement these features yourself or collect data through other means (e.g., screenshots, post-game surveys).
+Yes, the game can be used for academic research under the license terms. Please cite the game appropriately in any publications. If you're planning experimental research, note that the current version does not include built-in data export or participant key stroke tracking — you may need to implement these features yourself or collect data through other means (e.g., screenshots, post-game surveys).
 
 ### How can I control for randomness in experiments?
 The game includes random events that vary between playthroughs. For controlled experiments, you may need to modify the source code to fix random seeds or disable certain event types. Feel free to fork the repository for this purpose.
