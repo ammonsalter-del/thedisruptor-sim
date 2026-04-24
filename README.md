@@ -21,7 +21,7 @@ The game is organised around sixteen systems: R&D Portfolio, Innovation Launchpa
 - **Message Centre.** Proposals, events and staff suggestions surface as triaged messages. Most decisions happen in the MC itself rather than buried in modals.
 - **Live capability network map.** A force-directed view showing how capabilities cluster around products, updating as expertise grows and products launch.
 - **Pantheon of Innovation.** An in-game advisory library naming real scholars — Schumpeter, Penrose, Freeman, Nelson, Teece and many others — whose ideas surface where they bear on the player's situation.
-- **Scope and depth.** Over 950 events and decision prompts across 15 streams, 480+ innovation concepts, 250+ hiring candidates, 300 R&D project templates, 200+ scouting findings, and ~100 CEO objectives. Systems run deep — IP, complementors, alliances and standards each have their own typologies and conflict logic. Five modes (Forge, Incubator, Pivot, Jugaad, Gauntlet) change how the game is played: Incubator reshapes which systems start active, Pivot swaps in sector-specific innovations, hires, scouting findings and events for one of four pathways (wellness, medical, defence, games), and Jugaad and Gauntlet tighten the constraints on the full system.
+- **Scope and depth.** Over 950 events and decision prompts across 16 streams, 480+ innovation concepts, 250+ hiring candidates, 300 R&D project templates, 200+ scouting findings, and ~100 CEO objectives. Systems run deep — IP, complementors, alliances and standards each have their own typologies and conflict logic. Five modes (Forge, Incubator, Pivot, Jugaad, Gauntlet) change how the game is played: Incubator reshapes which systems start active, Pivot swaps in sector-specific innovations, hires, scouting findings and events for one of four pathways (wellness, medical, defence, games), and Jugaad and Gauntlet tighten the constraints on the full system.
 
 ## Quick Start
 
@@ -68,7 +68,7 @@ Released under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 In
 
 **Beta testers:** Students of the Corporate Entrepreneurship course — Masters in Management programme, Warwick Business School 2025–26.
 
-**Development tools:** Built with AI coding assistance from Claude (Anthropic), Gemini (Google) and Codex (OpenAI).
+**Development tools:** Built with AI coding assistance from Claude (Anthropic), Gemini (Google) and Codex/GPT (OpenAI).
 
 **Audio credits:** Sound samples sourced from Freesound.org — "Atmos" by fluxdelux (CC BY 4.0), "Ambient, Pad Piano – Event Horizon" by Andrewkn (CC BY 4.0), "Clank Car Crash Collision" by qubodup (CC0), "crash.wav" by moxobna (CC0), "Rocket 02.wav" by LilMati (CC0).
 
