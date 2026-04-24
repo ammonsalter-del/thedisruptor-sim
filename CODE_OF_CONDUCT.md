@@ -27,7 +27,7 @@ This Code of Conduct applies within all project spaces — including Issues, Dis
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behaviour may be reported by contacting the project team at ammonsalter@icloud.com. All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances.
+Instances of abusive, harassing, or otherwise unacceptable behaviour may be reported by contacting the project team at ammon.salter@wbs.ac.uk. All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances.
 
 ## Attribution
 
