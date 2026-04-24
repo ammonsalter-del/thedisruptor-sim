@@ -3,7 +3,7 @@
 ## Playing the Game
 
 ### How long does a game take?
-A fast play gameplay may takes 45–60 minutes, depending on how carefully you consider each decision. However, deeper play may take several hours. There is a save function, so players can start and stop whenever they want. The tutorial adds an additional 5–10 minutes for first-time players. Reading the Vélox Dynamics case study beforehand takes about 20–30 minutes.
+A fast play gameplay may take 45–60 minutes, depending on how carefully you consider each decision. However, deeper play may take several hours. The game can be played in different versions and repeat sessions. It is designed to be challenging and addictive (in a good way). There is a save function, so players can start and stop whenever they want. The tutorial adds an additional 5–10 minutes for first-time players. Reading the Vélox Dynamics case study beforehand takes about 20–30 minutes.
 
 ### Can I save my progress?
 The game runs entirely in your browser and does not save progress between sessions. Players must save their progress manually on their local device. When they open this file, they can finish the game at their leisure.
