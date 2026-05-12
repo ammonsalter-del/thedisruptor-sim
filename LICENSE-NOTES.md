@@ -1,4 +1,4 @@
-# Licence Notes
+# Notes
 
 The Disruptor — an innovation management and corporate entrepreneurship simulation. Copyright © 2026 Ammon Salter, Warwick Business School, University of Warwick.
 
