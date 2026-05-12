@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+title: "The Disruptor: An Innovation Management and Corporate Entrepreneurship Simulation"
+message: "If you use this simulation in research or teaching, please cite it as below."
+type: software
+authors:
+  - family-names: Salter
+    given-names: Ammon
+    affiliation: "Warwick Business School, University of Warwick"
+    orcid: "https://orcid.org/0000-0003-2065-1268"
+repository-code: "https://github.com/ammonsalter-del/thedisruptor-sim"
+url: "https://disruptorsim.org/"
+license: CC-BY-NC-SA-4.0
+keywords:
+  - corporate entrepreneurship
+  - innovation management
+  - innovation strategy
+  - R&D portfolio management
+  - three horizons
+  - business simulation
+  - management education
+  - absorptive capacity
+  - dynamic capabilities
+  - organisational ambidexterity
+  - open innovation
+  - appropriability
+  - creative destruction
+  - dominant design
+  - platform strategy
+  - corporate venturing
+  - intellectual property strategy
+  - ISO 56001
+version: 1.0.0
+date-released: "2026-05-12"
