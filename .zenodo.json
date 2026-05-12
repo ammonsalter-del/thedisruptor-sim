@@ -1,0 +1,41 @@
+{
+  "title": "The Disruptor: An Innovation Management and Corporate Entrepreneurship Simulation",
+  "description": "The Disruptor is a free, open-source, single-player browser-based simulation in which the player takes the role of Chief Innovation Officer at Vélox Dynamics — a fictional €420M Belgian fitness-equipment firm owned by a mission-driven enterprise foundation. Over a three-year simulated tenure, the player runs an innovation portfolio across three horizons; hires and shapes a multi-disciplinary R&D organisation; negotiates alliances and university partnerships; manages a platform and complementor ecosystem; sets intellectual property strategy; engages with industry standards; scouts external knowledge; and invests in start-ups — under continuous pressure from a board, a workforce and ten AI-controlled competitors. The simulation embeds around twenty-five concepts from the innovation-management literature — including absorptive capacity, dynamic capabilities, organisational ambidexterity, open innovation, dominant design, creative destruction, structural holes, appropriability and VRIN resources — into live game systems rather than text, with the underlying scholarship surfaced through an in-game Pantheon of forty innovation thinkers. The end-of-game scorecard is mapped to the ISO 56001 Innovation Management Standard, with an Innovation Maturity score (0–100) and a Legacy Score (A–D). The Disruptor is designed for undergraduate, postgraduate, MBA, EMBA, executive and doctoral education in corporate entrepreneurship, innovation management, technology strategy and strategic management. It runs in any modern browser, requires no installation and works offline. A full educator pack — Educator's Companion, teaching guide, assignment bank with rubrics mapped to QAA Level 7, exam questions and an AI assistant — is available on request.",
+  "creators": [
+    {
+      "name": "Salter, Ammon",
+      "affiliation": "Warwick Business School, University of Warwick",
+      "orcid": "0000-0003-2065-1268"
+    }
+  ],
+  "keywords": [
+    "corporate entrepreneurship",
+    "innovation management",
+    "innovation strategy",
+    "R&D portfolio management",
+    "three horizons",
+    "business simulation",
+    "management education",
+    "absorptive capacity",
+    "dynamic capabilities",
+    "organisational ambidexterity",
+    "open innovation",
+    "appropriability",
+    "creative destruction",
+    "dominant design",
+    "platform strategy",
+    "corporate venturing",
+    "intellectual property strategy",
+    "ISO 56001"
+  ],
+  "license": "CC-BY-NC-SA-4.0",
+  "upload_type": "software",
+  "access_right": "open",
+  "related_identifiers": [
+    {
+      "identifier": "https://disruptorsim.org/",
+      "relation": "isDocumentedBy",
+      "scheme": "url"
+    }
+  ]
+}
