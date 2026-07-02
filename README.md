@@ -2,10 +2,15 @@
 
 An educational simulation of innovation management and corporate entrepreneurship.
 
-Version 1.0 · April 2026
+Version 1.1 · July 2026
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20141142.svg)](https://doi.org/10.5281/zenodo.20141142)
 
+New version updated from April 2026 Version 1.0
+* Minor bug fixes
+* Patch fix to tracker
+* Added link to CEO reflection tool - allows players to upload their game report and talk to CEO about their experience - at the end of the game
+  
 ## About
 
 The Disruptor is an educational simulation about innovation management and corporate entrepreneurship. The player becomes Chief Innovation Officer of Vélox Dynamics, a mid-sized industrial firm with a forty-year heritage, on a three-year brief. The CEO sets annual objectives. The Board reviews progress. Markets move, competitors act, grants succeed or fail, staff arrive and leave, projects land and miss.
