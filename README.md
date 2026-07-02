@@ -2,7 +2,7 @@
 
 An educational simulation of innovation management and corporate entrepreneurship.
 
-Version 1.1 · July 2026
+Version 1.01 · July 2026
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20141142.svg)](https://doi.org/10.5281/zenodo.20141142)
 
