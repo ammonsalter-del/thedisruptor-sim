@@ -12,6 +12,16 @@ The game does include:
 - An optional Google Drive iframe for viewing the case study PDF
 - Links to external resources (Creative Commons, GitHub)
 
+## The CEO Reflection Tool (Katrien)
+
+The game links to an optional reflection tool built on Claude artefacts, in which players can discuss their end-of-game report with the fictional CEO. Using it requires a free Claude account, and the player chooses to upload their own report PDF to Claude (Anthropic). The game itself transmits nothing; anything shared with the tool is governed by Anthropic's terms and privacy policy, and players who prefer not to upload their report can simply skip the tool.
+
+## For University IT and Data Protection Teams
+
+The Disruptor processes **no personal data at all**: no accounts, no logins, no cookies, no analytics, no data transmitted to game servers (there are none). Game state exists only in the player's browser. Under GDPR there is nothing to assess — no personal data is collected, so no consent banner, DPIA, or processor agreement is needed. The full source code is public in this repository, so every claim can be verified by inspection. Institutions preferring zero network activity can download the HTML file and run it locally.
+
+The one point of judgement is the optional Katrien reflection tool described above: a student who chooses to use it uploads their own game report to Claude under their own free account, in the same way they might paste text into any AI assistant. The game transmits nothing itself, and the tool is entirely skippable.
+
 ## Reporting a Vulnerability
 
 If you discover a security issue — for example, a cross-site scripting (XSS) vulnerability in the HTML, or a problem with how external content is loaded — please report it responsibly.
