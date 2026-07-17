@@ -1,10 +1,12 @@
 # The Disruptor
 
-An educational simulation of innovation management and corporate entrepreneurship.
+A free, browser-based educational simulation of innovation management and corporate entrepreneurship, built for university teaching.
 
-Version 1.01 · July 2026
+Version 1.0.1 · July 2026
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20141142.svg)](https://doi.org/10.5281/zenodo.20141142)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21127039.svg)](https://doi.org/10.5281/zenodo.21127039)
+
+**Play:** https://ammonsalter-del.github.io/thedisruptor-sim/ · **Website:** https://disruptorsim.org · **Archived release (Zenodo):** https://doi.org/10.5281/zenodo.21127039
 
 New version updated from April 2026 Version 1.0
 * Minor bug fixes
@@ -32,22 +34,25 @@ The game is organised around sixteen systems: R&D Portfolio, Innovation Launchpa
 
 ## Quick Start
 
-Open `index.html` in any modern browser. No install, no server, no accounts. All data stays in your session.
+Open `index.html` in any modern browser, or play online at https://ammonsalter-del.github.io/thedisruptor-sim/. No install, no server, no accounts. All data stays in your session.
 
 ## Educator Resources
 
-Teaching materials — the Vélox case study, teaching notes, and exam questions and assessment prompts — are available directly from the author by email for use in university teaching. Please contact Ammon Salter at Warwick Business School.
+Teaching materials — the Vélox case study, teaching notes, and exam questions and assessment prompts — are available directly from the author by email for use in university teaching. Please contact Ammon Salter at Warwick Business School. The teaching pack and further background are on the website at https://disruptorsim.org/educators.html.
 
 ## Citation
 
-Salter, A. (2026). *The Disruptor: An educational simulation of innovation management and corporate entrepreneurship* (Version 1.0) [Computer software]. Warwick Business School, University of Warwick.
+Salter, A. (2026). *The Disruptor: An Innovation Management and Corporate Entrepreneurship Simulation* (Version 1.0.1) [Software]. Zenodo. https://doi.org/10.5281/zenodo.21127039
 
 ```bibtex
 @software{salter2026disruptor,
   author      = {Salter, Ammon},
-  title       = {The Disruptor: An educational simulation of innovation management and corporate entrepreneurship},
+  title       = {The Disruptor: An Innovation Management and Corporate Entrepreneurship Simulation},
   year        = {2026},
-  version     = {1.0},
+  version     = {1.0.1},
+  publisher   = {Zenodo},
+  doi         = {10.5281/zenodo.21127039},
+  url         = {https://doi.org/10.5281/zenodo.21127039},
   institution = {Warwick Business School, University of Warwick}
 }
 ```
