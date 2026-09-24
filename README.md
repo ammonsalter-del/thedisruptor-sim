@@ -2,11 +2,20 @@
 
 A free, browser-based educational simulation of innovation management and corporate entrepreneurship, built for university teaching.
 
-Version 1.0.1 · July 2026
+Version 1.0.2 · September 2026
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21127039.svg)](https://doi.org/10.5281/zenodo.21127039)
 
 **Play:** https://ammonsalter-del.github.io/thedisruptor-sim/ · **Website:** https://disruptorsim.org · **Archived release (Zenodo):** https://doi.org/10.5281/zenodo.21127039
+
+New in Version 1.0.2 (September 2026)
+* The three mini-games (Lead User Patrol, Design Thinking Pinball, Wellness Orbit Run) now ship with the game and load on the website
+* Mini-games trigger reliably, whichever tab you are on
+* Sliders in negotiations and salary offers no longer rebuild the screen on every movement (fixes freezes, worse with browser translation)
+* End-of-game report: readable text, correct years, board appraisals under the right year, timeline grouped by year, platform use reported correctly
+* No more silent stop at quarter end after pressing Play with messages still open
+* Four IP manager events that failed silently now fire
+* Licence page before play
 
 New version updated from April 2026 Version 1.0
 * Minor bug fixes
@@ -42,14 +51,14 @@ Teaching materials — the Vélox case study, teaching notes, and exam questions
 
 ## Citation
 
-Salter, A. (2026). *The Disruptor: An Innovation Management and Corporate Entrepreneurship Simulation* (Version 1.0.1) [Software]. Zenodo. https://doi.org/10.5281/zenodo.21127039
+Salter, A. (2026). *The Disruptor: An Innovation Management and Corporate Entrepreneurship Simulation* (Version 1.0.2) [Software]. Zenodo. https://doi.org/10.5281/zenodo.21127039
 
 ```bibtex
 @software{salter2026disruptor,
   author      = {Salter, Ammon},
   title       = {The Disruptor: An Innovation Management and Corporate Entrepreneurship Simulation},
   year        = {2026},
-  version     = {1.0.1},
+  version     = {1.0.2},
   publisher   = {Zenodo},
   doi         = {10.5281/zenodo.21127039},
   url         = {https://doi.org/10.5281/zenodo.21127039},
