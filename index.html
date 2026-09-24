@@ -2123,6 +2123,7 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 30px rgba(204,41,54,0.35);
         }
+        .landing-enter-btn button:disabled { opacity: 0.45; cursor: not-allowed; transform: none; box-shadow: none; }
         .landing-footer {
             flex-shrink: 0;
             padding: 16px 0 20px;
@@ -3224,7 +3225,29 @@
                 <p>Get it right and you reshape an industry. Get it wrong and the gale sweeps you away. <em>Can you shape the future?</em></p>
             </div>
             <div class="landing-enter-btn">
-                <button onclick="enterGame()">Take the Helm &rarr;</button>
+                <button onclick="openLicencePage()">Take the Helm &rarr;</button>
+            </div>
+        </div>
+        <!-- The licence page (24 Sep 2026): Take the Helm opens it; the game goes on only once the box is ticked -->
+        <div id="licence-screen" class="landing-content" style="display:none;max-width:760px;margin:0 auto;" role="dialog" aria-modal="true" aria-labelledby="licence-title">
+            <div class="landing-logo-container">
+                <img src="Logocropped.png" alt="The Disruptor" style="width:360px;height:auto;">
+                <div class="landing-tagline">A Corporate Entrepreneurship &amp; Innovation Simulation</div>
+            </div>
+            <div class="landing-red-rule"></div>
+            <div class="landing-narrative" style="max-width:680px;">
+                <p id="licence-title" style="font-size:22px;font-weight:800;color:var(--neutral-900);margin-bottom:14px;">A community project.</p>
+                <p>The Disruptor is free to use for students and educators, for non-profit education and research, under a Creative Commons BY-NC-SA 4.0 licence: no adverts, no account, no charge. When you play it, you are part of that community.</p>
+                <p>Commercial use, including paid consulting, corporate training and client workshops, requires explicit permission. Anything built from the game, in whole or in part, must be shared under the same licence, freely and with credit.</p>
+                <p style="font-size:13px;color:rgba(0,0,0,0.55);">Licence and terms: <a href="https://disruptorsim.org/licence.html" target="_blank" rel="noopener" style="color:var(--red-500);">disruptorsim.org/licence.html</a></p>
+                <label for="licence-tick" style="display:flex;align-items:flex-start;gap:12px;margin:22px 0 26px;cursor:pointer;color:var(--neutral-900);font-size:15px;">
+                    <input type="checkbox" id="licence-tick" style="width:20px;height:20px;margin-top:2px;accent-color:var(--red-500);" onchange="licenceTicked()">
+                    <span>I understand and will use the game within its licence.</span>
+                </label>
+            </div>
+            <div class="landing-enter-btn" style="display:flex;justify-content:center;align-items:center;gap:18px;">
+                <button type="button" onclick="licenceBack()" style="background:none;border:1px solid rgba(0,0,0,0.15);color:rgba(0,0,0,0.5);box-shadow:none;padding:12px 22px;font-size:13px;">&larr; Back</button>
+                <button type="button" id="licence-continue" onclick="licenceContinue()" disabled>Take the Helm &rarr;</button>
             </div>
         </div>
         <div class="landing-footer">
@@ -38949,7 +38972,7 @@ const PIVOT_OBJECTIVES_POOL = [
             if (!G.eventLog) G.eventLog = [];
             var quarter = G.quarter;
             G.eventLog.push({ msg: msg, type: type || 'event', quarter: quarter, year: G.year, week: G.week });
-            if (G.eventLog.length > 200) G.eventLog = G.eventLog.slice(-200);
+            if (G.eventLog.length > 600) G.eventLog = G.eventLog.slice(-600);
             // Also push to the scrolling news ticker
             var typeIcons = { good: '✅', bad: '⚠️', warning: '⚠️', decision: '📋', event: '📰' };
             var icon = typeIcons[type] || '📰';
@@ -39829,7 +39852,7 @@ const PIVOT_OBJECTIVES_POOL = [
             // Defer events whenever the player is doing ANYTHING interactive
             // 1. MC tab is open with unread messages
             var mc = document.getElementById('message-centre');
-            if (mc && mc.classList.contains('active')) {
+            if (mc && mc.classList.contains('active') && G._mcAutoPaused) {
                 if ((G.messageCenter || []).some(function(m) { return m.status === 'unread' || m.status === 'read'; })) return true;
             }
             // 2. Any modal is open (alliance, platform, staff, university, etc.)
@@ -39845,6 +39868,16 @@ const PIVOT_OBJECTIVES_POOL = [
             // 5. Quarterly report is being shown
             if (G._showingQuarterlyReport) return true;
             // 6. PT14-12: JV announcement / board event pending — hold flow until JV decided
+            if (G._jvAnnouncementPending || G._jvBoardEventPending) return true;
+            return false;
+        }
+        // Mini-game triggers: defer only for screens that would sit under the announcement.
+        // Not for the Messages tab, which is the default view and would otherwise swallow the whole trigger window.
+        function _isBlockingUiOpen() {
+            if (document.querySelector('.modal-overlay.active, #modal-overlay.active')) return true;
+            if (G._modalOpen || G.isModalOpen) return true;
+            if (typeof isSubPopupOpen === 'function' && isSubPopupOpen()) return true;
+            if (G.portfolioBuilder && G.isYearlySelectionActive) return true;
             if (G._jvAnnouncementPending || G._jvBoardEventPending) return true;
             return false;
         }
@@ -42755,11 +42788,11 @@ const PIVOT_OBJECTIVES_POOL = [
             h += '<div style="font-size:13px;font-weight:700;color:#5b21b6;">💰 Annual Fee</div>';
             h += '<div style="font-size:10px;color:#64748b;">They ask: €' + base.annualFee + 'k/yr</div>';
             h += '</div>';
-            h += '<div style="text-align:center;font-size:18px;font-weight:800;color:#4338ca;margin-bottom:2px;">€' + neg.offeredFeeK + 'k/yr</div>';
+            h += '<div id="cn-fee-live" style="text-align:center;font-size:18px;font-weight:800;color:#4338ca;margin-bottom:2px;">€' + neg.offeredFeeK + 'k/yr</div>';
             h += '<div style="display:flex;justify-content:space-between;font-size:9px;color:#94a3b8;margin-bottom:2px;">';
             h += '<span>Hardball</span><span>Their ask</span><span>More generous</span></div>';
             h += '<input type="range" class="offer-slider" min="' + minFee + '" max="' + maxFee + '" step="5" value="' + neg.offeredFeeK + '" ';
-            h += 'oninput="updateCompNegFee(parseInt(this.value))">';
+            h += 'oninput="document.getElementById(\'cn-fee-live\').textContent=\'\u20ac\'+this.value+\'k/yr\'" onchange="updateCompNegFee(parseInt(this.value))">';
             h += '</div>';
             // ─── Data Access Pills ───
             h += '<div style="padding:10px 12px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;margin-bottom:12px;">';
@@ -46542,8 +46575,8 @@ const PIVOT_OBJECTIVES_POOL = [
 
             // Equity split slider
             html += '<div style="margin-bottom:16px;">';
-            html += '<div style="font-size:12px;font-weight:600;color:#6b7280;margin-bottom:6px;">EQUITY SPLIT — Vélox Share: <span style="color:#92400e;font-size:14px;">' + neg.equitySplit + '%</span></div>';
-            html += '<input type="range" min="40" max="60" step="1" value="' + neg.equitySplit + '" oninput="updateJVNegotiation(\'equity\',this.value)" style="width:100%;accent-color:#d97706;">';
+            html += '<div style="font-size:12px;font-weight:600;color:#6b7280;margin-bottom:6px;">EQUITY SPLIT — Vélox Share: <span id="jv-eq-live" style="color:#92400e;font-size:14px;">' + neg.equitySplit + '%</span></div>';
+            html += '<input type="range" min="40" max="60" step="1" value="' + neg.equitySplit + '" oninput="document.getElementById(\'jv-eq-live\').textContent=this.value+\'%\'" onchange="updateJVNegotiation(\'equity\',this.value)" style="width:100%;accent-color:#d97706;">';
             html += '<div style="display:flex;justify-content:space-between;font-size:10px;color:#9ca3af;"><span>40% (Partner-favoured)</span><span>50/50</span><span>60% (Vélox-favoured)</span></div>';
             html += '</div>';
 
@@ -48680,7 +48713,7 @@ const PIVOT_OBJECTIVES_POOL = [
             h += '<div style="text-align:center;font-size:16px;font-weight:800;color:#4338ca;margin-bottom:2px;">' + ipOpt.label + '</div>';
             h += '<div style="text-align:center;font-size:12px;color:#64748b;margin-bottom:4px;">' + ipOpt.desc + '</div>';
             h += '<input type="range" class="offer-slider" min="0" max="3" step="1" value="' + ipTerms + '" ';
-            h += 'oninput="adjustAllianceIpTerms(this.value);">';
+            h += 'onchange="adjustAllianceIpTerms(this.value);">';
             h += '<div style="font-size:12px;color:#7c3aed;margin-top:4px;text-align:center;">Partner prefers: <strong>' + getIpTermsLabel(neg.partnerDefaultIp) + '</strong></div>';
             h += '</div>';
 
@@ -64388,7 +64421,7 @@ const PIVOT_OBJECTIVES_POOL = [
             html += '<div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;">';
             html += '<span style="font-size:11px;color:#059669;font-weight:600;">\uD83D\uDD12 Tacit</span>';
             html += '<div style="flex:1;position:relative;">';
-            html += '<input type="range" min="0" max="100" value="' + s.patentvsTrade + '" oninput="G.ip.strategy.patentvsTrade=+this.value;renderIPModal();" style="width:100%;accent-color:' + pvtColor + ';">';
+            html += '<input type="range" min="0" max="100" value="' + s.patentvsTrade + '" onchange="G.ip.strategy.patentvsTrade=+this.value;renderIPModal();" style="width:100%;accent-color:' + pvtColor + ';">';
             html += '</div>';
             html += '<span style="font-size:11px;color:#7c3aed;font-weight:600;">\uD83D\uDCC4 Patent</span>';
             html += '</div>';
@@ -69688,7 +69721,8 @@ const PIVOT_OBJECTIVES_POOL = [
             }
 
             // Contextualise description
-            var desc = event.desc
+            var _rawDesc = (typeof event.desc === 'function') ? event.desc() : (event.desc || '');
+            var desc = String(_rawDesc)
                 .replace(/\{ipName\}/g, ipMgr ? ipMgr.name.split(' ')[0] : 'IP Manager')
                 .replace(/\{empName\}/g, targetEmp ? targetEmp.name : 'a key engineer')
                 .replace(/\{empSeniority\}/g, targetEmp ? targetEmp.seniority : 'senior')
@@ -79121,8 +79155,8 @@ return 'You accept the dependency\u2014no immediate disruption, but you remain v
             var specLabel = scout.specialization.charAt(0).toUpperCase() + scout.specialization.slice(1);
             var h = '<div style="text-align:center;margin-bottom:12px;"><div style="font-size:36px;">🔭</div><div style="font-size:15px;font-weight:800;color:#1e293b;">' + scout.name + '</div><div style="font-size:12px;color:#64748b;">' + specLabel + ' Scout · ' + scout.flag + '</div></div>';
             h += '<div class="offer-panel" style="border-color:#06b6d444;"><h4 style="margin:0 0 8px;font-size:14px;color:#06b6d4;">\ud83d\udcb0 Salary Offer</h4>';
-            h += '<div style="text-align:center;font-size:22px;font-weight:800;color:#06b6d4;margin-bottom:4px;">\u20ac' + salary + 'K<span style="font-size:12px;font-weight:400;color:#64748b;">/year</span></div>';
-            h += '<input type="range" class="offer-slider" min="' + sliderMin + '" max="' + sliderMax + '" value="' + salary + '" style="accent-color:#06b6d4;" oninput="G.scoutingUI.offerSalary=parseInt(this.value);closeSubPopup();openScoutOfferPopup(\'' + scout.id + '\');">';
+            h += '<div style="text-align:center;font-size:22px;font-weight:800;color:#06b6d4;margin-bottom:4px;"><span id="scout-salary-live">\u20ac' + salary + 'K</span><span style="font-size:12px;font-weight:400;color:#64748b;">/year</span></div>';
+            h += '<input type="range" class="offer-slider" min="' + sliderMin + '" max="' + sliderMax + '" value="' + salary + '" style="accent-color:#06b6d4;" oninput="document.getElementById(\'scout-salary-live\').textContent=\'\u20ac\'+this.value+\'K\'" onchange="G.scoutingUI.offerSalary=parseInt(this.value);closeSubPopup();openScoutOfferPopup(\'' + scout.id + '\');">';
             h += '<div style="display:flex;justify-content:space-between;font-size:10px;color:#94a3b8;"><span>\u20ac' + sliderMin + 'K</span><span>\u20ac' + sliderMax + 'K</span></div>';
             h += '<div class="offer-prob ' + probClass + '">' + probLabel + '</div>';
             h += '<div style="font-size:12px;color:#475569;margin-top:8px;line-height:1.6;">Q1 Salary: <strong>\u20ac' + qSalary + 'K</strong><br><div style="border-top:1px solid #cffafe;margin-top:4px;padding-top:4px;font-weight:700;">Total immediate cost: \u20ac' + qSalary + 'K</div></div></div>';
@@ -84180,8 +84214,8 @@ return 'You accept the dependency\u2014no immediate disruption, but you remain v
 
             html += '<div class="offer-panel">';
             html += '<h4 style="margin:0 0 8px;font-size:14px;color:#92400e;">\ud83d\udcb0 Salary Offer</h4>';
-            html += '<div style="text-align:center;font-size:22px;font-weight:800;color:#4338ca;margin-bottom:4px;">\u20ac' + salary + 'K<span style="font-size:12px;font-weight:400;color:#64748b;">/year</span></div>';
-            html += '<input type="range" class="offer-slider" min="' + Math.max(cand.salaryExpect.min - 10, 30) + '" max="' + (cand.salaryExpect.max + 10) + '" value="' + salary + '" oninput="G.staffUI.offerSalary=parseInt(this.value);renderStaffModal();">';
+            html += '<div style="text-align:center;font-size:22px;font-weight:800;color:#4338ca;margin-bottom:4px;"><span id="staff-salary-live">\u20ac' + salary + 'K</span><span style="font-size:12px;font-weight:400;color:#64748b;">/year</span></div>';
+            html += '<input type="range" class="offer-slider" min="' + Math.max(cand.salaryExpect.min - 10, 30) + '" max="' + (cand.salaryExpect.max + 10) + '" value="' + salary + '" oninput="document.getElementById(\'staff-salary-live\').textContent=\'\u20ac\'+this.value+\'K\'" onchange="G.staffUI.offerSalary=parseInt(this.value);renderStaffModal();">';
             html += '<div style="display:flex;justify-content:space-between;font-size:10px;color:#94a3b8;"><span>\u20ac' + Math.max(cand.salaryExpect.min - 10, 30) + 'K</span><span>\u20ac' + (cand.salaryExpect.max + 10) + 'K</span></div>';
             html += '<div class="offer-prob ' + probClass + '">' + probLabel + '</div>';
 
@@ -84926,8 +84960,8 @@ return 'You accept the dependency\u2014no immediate disruption, but you remain v
             const trainingCost = ONBOARDING_TRAINING_COST[cand.seniority] || 15; const totalImmediate = signing + qSalary + trainingCost;
             let h = '<div style="text-align:center;margin-bottom:12px;"><div style="font-size:36px;">' + (cand.portrait || '\ud83d\udc64') + '</div><div style="font-size:15px;font-weight:800;color:#1e293b;">' + cand.name + '</div><div style="font-size:12px;color:#64748b;">' + cand.role + '</div></div>';
             h += '<div class="offer-panel"><h4 style="margin:0 0 8px;font-size:14px;color:#92400e;">\ud83d\udcb0 Salary Offer</h4>';
-            h += '<div style="text-align:center;font-size:22px;font-weight:800;color:#4338ca;margin-bottom:4px;">\u20ac' + salary + 'K<span style="font-size:12px;font-weight:400;color:#64748b;">/year</span></div>';
-            h += '<input type="range" class="offer-slider" min="' + Math.max(cand.salaryExpect.min - 10, 30) + '" max="' + (cand.salaryExpect.max + 10) + '" value="' + salary + '" oninput="G.staffUI.offerSalary=parseInt(this.value);closeSubPopup();openStaffOfferPopup(\'' + cand.id + '\');">';
+            h += '<div style="text-align:center;font-size:22px;font-weight:800;color:#4338ca;margin-bottom:4px;"><span id="staff-offer-live">\u20ac' + salary + 'K</span><span style="font-size:12px;font-weight:400;color:#64748b;">/year</span></div>';
+            h += '<input type="range" class="offer-slider" min="' + Math.max(cand.salaryExpect.min - 10, 30) + '" max="' + (cand.salaryExpect.max + 10) + '" value="' + salary + '" oninput="document.getElementById(\'staff-offer-live\').textContent=\'\u20ac\'+this.value+\'K\'" onchange="G.staffUI.offerSalary=parseInt(this.value);closeSubPopup();openStaffOfferPopup(\'' + cand.id + '\');">';
             h += '<div style="display:flex;justify-content:space-between;font-size:10px;color:#94a3b8;"><span>\u20ac' + Math.max(cand.salaryExpect.min - 10, 30) + 'K</span><span>\u20ac' + (cand.salaryExpect.max + 10) + 'K</span></div>';
             h += '<div class="offer-prob ' + probClass + '">' + probLabel + '</div>';
             h += '<div style="font-size:12px;color:#475569;margin-top:8px;line-height:1.6;">Signing bonus: <strong>\u20ac' + signing + 'K</strong><br>Training/onboarding: <strong>\u20ac' + trainingCost + 'K</strong><br>Q1 Salary: <strong>\u20ac' + qSalary + 'K</strong><br><div style="border-top:1px solid #fde047;margin-top:4px;padding-top:4px;font-weight:700;">Total immediate: \u20ac' + totalImmediate + 'K</div></div></div>';
@@ -89921,8 +89955,8 @@ return 'You accept the dependency\u2014no immediate disruption, but you remain v
             var sliderMax = cand.salaryExpect.max + 10;
             var h = '<div style="text-align:center;margin-bottom:12px;"><div style="font-size:36px;">' + (cand.portrait || '\ud83d\udc64') + '</div><div style="font-size:15px;font-weight:800;color:#1e293b;">' + cand.name + '</div><div style="font-size:12px;color:#64748b;">' + cand.specialty.charAt(0).toUpperCase() + cand.specialty.slice(1) + ' Specialist · ' + cand.flag + '</div></div>';
             h += '<div class="offer-panel" style="border-color:#be185d44;"><h4 style="margin:0 0 8px;font-size:14px;color:#be185d;">\ud83d\udcb0 Salary Offer</h4>';
-            h += '<div style="text-align:center;font-size:22px;font-weight:800;color:#be185d;margin-bottom:4px;">\u20ac' + salary + 'K<span style="font-size:12px;font-weight:400;color:#64748b;">/year</span></div>';
-            h += '<input type="range" class="offer-slider" min="' + sliderMin + '" max="' + sliderMax + '" value="' + salary + '" style="accent-color:#be185d;" oninput="G.venturingUI.offerSalary=parseInt(this.value);closeSubPopup();openCvcOfferPopup(\'' + cand.id + '\');">';
+            h += '<div style="text-align:center;font-size:22px;font-weight:800;color:#be185d;margin-bottom:4px;"><span id="cvc-salary-live">\u20ac' + salary + 'K</span><span style="font-size:12px;font-weight:400;color:#64748b;">/year</span></div>';
+            h += '<input type="range" class="offer-slider" min="' + sliderMin + '" max="' + sliderMax + '" value="' + salary + '" style="accent-color:#be185d;" oninput="document.getElementById(\'cvc-salary-live\').textContent=\'\u20ac\'+this.value+\'K\'" onchange="G.venturingUI.offerSalary=parseInt(this.value);closeSubPopup();openCvcOfferPopup(\'' + cand.id + '\');">';
             h += '<div style="display:flex;justify-content:space-between;font-size:10px;color:#94a3b8;"><span>\u20ac' + sliderMin + 'K</span><span>\u20ac' + sliderMax + 'K</span></div>';
             h += '<div class="offer-prob ' + probClass + '">' + probLabel + '</div>';
             h += '<div style="font-size:12px;color:#475569;margin-top:8px;line-height:1.6;">Q1 Salary: <strong>\u20ac' + qSalary + 'K</strong><br><div style="border-top:1px solid #fce7f3;margin-top:4px;padding-top:4px;font-weight:700;">Total immediate cost: \u20ac' + qSalary + 'K</div></div></div>';
@@ -101713,6 +101747,7 @@ return 'You accept the dependency\u2014no immediate disruption, but you remain v
             if (s > 0) G._lastActiveSpeed = s;
             G.speed = s;
             G.paused = s === 0;
+            if (s > 0) G._mcAutoPaused = false; // pressing Play ends reading mode: reports and popups may open over the Messages tab
             // Clear existing interval and set new one at correct speed
             if (window._tickInterval) { clearInterval(window._tickInterval); window._tickInterval = null; }
             if (s > 0) {
@@ -102114,7 +102149,7 @@ return 'You accept the dependency\u2014no immediate disruption, but you remain v
         function triggerMiniGame() {
             if (G.miniGameFired) return;
             // PT13-14: defer if player is reading/deciding in MC, modal, or sub-popup — weekly dispatcher will retry next week
-            if (typeof _isMcBusy === 'function' && _isMcBusy()) return;
+            if (typeof _isBlockingUiOpen === 'function' && _isBlockingUiOpen()) return;
             G.miniGameFired = true;
             G._lastMiniGameAbsWeek = ((G.year - 1) * 4 + (G.quarter - 1)) * 13 + G.week;
 
@@ -102463,7 +102498,7 @@ return 'You accept the dependency\u2014no immediate disruption, but you remain v
         function triggerPinball() {
             if (G.pinballFired) return;
             // PT13-14: defer if player is reading/deciding in MC, modal, or sub-popup — weekly dispatcher will retry next week
-            if (typeof _isMcBusy === 'function' && _isMcBusy()) return;
+            if (typeof _isBlockingUiOpen === 'function' && _isBlockingUiOpen()) return;
             G.pinballFired = true;
             G._lastMiniGameAbsWeek = ((G.year - 1) * 4 + (G.quarter - 1)) * 13 + G.week;
             G.pinballPlayed = false;
@@ -102732,7 +102767,7 @@ return 'You accept the dependency\u2014no immediate disruption, but you remain v
         function triggerPacman() {
             if (G.pacmanFired) return;
             // PT13-14: defer if player is reading/deciding in MC, modal, or sub-popup — weekly dispatcher will retry next week
-            if (typeof _isMcBusy === 'function' && _isMcBusy()) return;
+            if (typeof _isBlockingUiOpen === 'function' && _isBlockingUiOpen()) return;
             G.pacmanFired = true;
             G._lastMiniGameAbsWeek = ((G.year - 1) * 4 + (G.quarter - 1)) * 13 + G.week;
             G.pacmanPlayed = false;
@@ -102851,7 +102886,7 @@ return 'You accept the dependency\u2014no immediate disruption, but you remain v
                 // Perfect run — all 3 levels cleared with max stars
                 budgetReward = 2.0; reputationBoost = 3; capBoostAmt = 0.4;
                 moraleBoost = 0.3; projectProgressBoost = 4;
-                narrativeLines.push('\uD83C\uDF1F <b>Ecosystem Domination!</b> Your team cleared all 3 competitive mazes and earned ' + totalStars + ' stars! You converted ' + partnered.length + ' rival' + (partnered.length !== 1 ? 's' : '') + ' into ecosystem partners. The board is thrilled \u2014 your competitive navigation skills are world-class.');
+                narrativeLines.push('\uD83C\uDF1F <b>Ecosystem Domination!</b> Your team cleared both competitive arenas and earned ' + totalStars + ' stars! You converted ' + partnered.length + ' rival' + (partnered.length !== 1 ? 's' : '') + ' into ecosystem partners. The board is thrilled \u2014 your competitive navigation skills are world-class.');
             } else if (levelsCleared >= 2 || totalStars >= 3) {
                 // Good run — 1-2 levels cleared
                 budgetReward = 1.0; reputationBoost = 2; capBoostAmt = 0.3;
@@ -107726,6 +107761,7 @@ return 'You accept the dependency\u2014no immediate disruption, but you remain v
             }
 
             function writeTitle(text, size, rgb) {
+                text = pdfSafe(text);
                 checkSpace(size * 0.6 + 4);
                 doc.setFontSize(size);
                 doc.setFont('helvetica', 'bold');
@@ -107741,6 +107777,7 @@ return 'You accept the dependency\u2014no immediate disruption, but you remain v
             }
 
             function writeSubtitle(text, size) {
+                text = pdfSafe(text);
                 checkSpace(size * 0.5 + 2);
                 doc.setFontSize(size);
                 doc.setFont('helvetica', 'bold');
@@ -107749,7 +107786,16 @@ return 'You accept the dependency\u2014no immediate disruption, but you remain v
                 curY += size * 0.45 + 2;
             }
 
+            // Helvetica in jsPDF cannot draw emoji or symbols: they print as garbled, spaced text.
+            // Keep ASCII, Latin-1, general punctuation (dashes, quotes, ellipsis), euro and TM; drop the rest.
+            function pdfSafe(text) {
+                return String(text == null ? '' : text)
+                    .replace(/[^\x20-\x7E\xA0-\xFF\u2010-\u2027\u2030-\u203A\u20AC\u2122]/g, '')
+                    .replace(/\s{2,}/g, ' ').trim();
+            }
+
             function writeParagraph(text, indent) {
+                text = pdfSafe(text);
                 indent = indent || 0;
                 doc.setFontSize(10);
                 doc.setFont('helvetica', 'normal');
@@ -107764,6 +107810,7 @@ return 'You accept the dependency\u2014no immediate disruption, but you remain v
             }
 
             function writeBullet(text) {
+                text = pdfSafe(text);
                 doc.setFontSize(10);
                 doc.setFont('helvetica', 'normal');
                 doc.setTextColor(51, 65, 85);
@@ -107899,9 +107946,9 @@ return 'You accept the dependency\u2014no immediate disruption, but you remain v
             checkSpace(60);
             writeTitle('Strategic Context', 16, [30, 41, 59]);
             writeParagraph('Each year, the board of Velox Dynamics voted on a strategic direction for innovation. These directions shaped the objectives you were set and the expectations against which you were measured.');
-            (G.boardStrategyHistory || []).forEach(function(s) {
+            (G.boardStrategyHistory || []).forEach(function(s, si) {
                 var dir = BOARD_STRATEGIC_DIRECTIONS.find(function(d) { return d.id === s.id; });
-                writeSubtitle('Year ' + s.year + ': ' + s.name, 11);
+                writeSubtitle('Year ' + (si + 1) + ': ' + s.name, 11);
                 if (dir && dir.description) writeParagraph(dir.description);
             });
 
@@ -107920,8 +107967,10 @@ return 'You accept the dependency\u2014no immediate disruption, but you remain v
 
             for (var yr = 1; yr <= 3; yr++) {
                 checkSpace(40);
-                var appraisal = (G.ceoAppraisalHistory || []).find(function(a) { return a.year === yr; });
-                var strat = (G.boardStrategyHistory || []).find(function(s) { return s.year === yr; });
+                var _ah = G.ceoAppraisalHistory || [];
+                var appraisal = _ah[yr - 1] || null;
+                var _sh = G.boardStrategyHistory || [];
+                var strat = _sh[yr - 1] || _sh[_sh.length - 1] || null;
                 var stratName = strat ? strat.name : 'Unknown';
 
                 writeSubtitle('Year ' + yr + ': ' + stratName, 13);
@@ -108056,9 +108105,12 @@ return 'You accept the dependency\u2014no immediate disruption, but you remain v
                 desc: ipTotal > 0 ? 'You built an IP portfolio of ' + ims.patents + ' patent' + (ims.patents !== 1 ? 's' : '') + ' and ' + ims.tradeSecrets + ' trade secret' + (ims.tradeSecrets !== 1 ? 's' : '') + '. Strong IP protection supports commercial value capture.' :
                 'No formal IP was filed. Without patents or trade secrets, innovations may be vulnerable to imitation.' });
             // Platform
-            var platSubs = G.platform && G.platform.subscribers ? G.platform.subscribers : 0;
-            tools.push({ name: 'Digital Platform', used: platSubs > 0, score: platSubs,
-                desc: platSubs > 0 ? 'Your digital platform grew to ' + platSubs + ' subscriber' + (platSubs !== 1 ? 's' : '') + ', creating recurring revenue potential and ecosystem value.' :
+            var _ps = (G.platform && G.platform.subscribers && typeof G.platform.subscribers === 'object') ? G.platform.subscribers : null;
+            var platSubs = _ps ? (Object.values(_ps.b2b || {}).reduce(function(s, v) { return s + (+v || 0); }, 0) + Object.values(_ps.b2c || {}).reduce(function(s, v) { return s + (+v || 0); }, 0)) : 0;
+            var platComps = (G.platform && G.platform.complementors) ? G.platform.complementors.length : 0;
+            var platUsed = ((G.platform && G.platform.investments) || []).length > 0 || (G.decisionLog || []).some(function(d) { return d.source === 'Platform Manager'; });
+            tools.push({ name: 'Digital Platform', used: platUsed, score: platSubs,
+                desc: platUsed ? 'Your digital platform reached ' + platSubs.toLocaleString() + ' subscribers with ' + platComps + ' complementor' + (platComps !== 1 ? 's' : '') + ', creating recurring revenue potential and ecosystem value.' :
                 'The digital platform was not actively developed. Platform business models can unlock recurring revenue streams.' });
             // Venturing
             var vcPortfolio = G.venturing && G.venturing.portfolio ? G.venturing.portfolio.length : 0;
@@ -108172,16 +108224,14 @@ return 'You accept the dependency\u2014no immediate disruption, but you remain v
 
                 // Group events by year
                 for (var eyr = 1; eyr <= 3; eyr++) {
-                    var yearStart = (eyr - 1) * 4 + 1;
-                    var yearEnd = eyr * 4;
-                    var yearEvents = eventLog.filter(function(e) { return e.quarter >= yearStart && e.quarter <= yearEnd; });
+                    var yearEvents = eventLog.filter(function(e) { return (e.year || 1) === eyr; });
                     if (yearEvents.length === 0) continue;
 
                     checkSpace(20);
                     writeSubtitle('Year ' + eyr + ' (' + yearEvents.length + ' events)', 11);
 
                     // Group by quarter within year
-                    for (var eq = yearStart; eq <= yearEnd; eq++) {
+                    for (var eq = 1; eq <= 4; eq++) {
                         var qEvents = yearEvents.filter(function(e) { return e.quarter === eq; });
                         if (qEvents.length === 0) continue;
                         checkSpace(8);
@@ -108200,7 +108250,7 @@ return 'You accept the dependency\u2014no immediate disruption, but you remain v
                             doc.text(typeMarker, marginL + 8, curY);
                             doc.setFont('helvetica', 'normal');
                             doc.setTextColor(51, 65, 85);
-                            var evtLines = doc.splitTextToSize(e.msg, contentW - 16);
+                            var evtLines = doc.splitTextToSize(pdfSafe(e.msg), contentW - 16);
                             evtLines.forEach(function(line) {
                                 checkSpace(4.5);
                                 doc.text(line, marginL + 14, curY);
@@ -114206,6 +114256,40 @@ return 'You accept the dependency\u2014no immediate disruption, but you remain v
             try { SoundManager.playEffect('ui_close'); } catch(e) {}
         }
 
+        // The licence page (24 Sep 2026): Take the Helm opens it; the game goes on only once the box is ticked.
+        function openLicencePage() {
+            var content = document.querySelector('#landing-screen .landing-content:not(#licence-screen)');
+            var lic = document.getElementById('licence-screen');
+            var tick = document.getElementById('licence-tick');
+            var go = document.getElementById('licence-continue');
+            if (!lic) { enterGame(); return; }
+            if (tick) tick.checked = false;
+            if (go) go.disabled = true;
+            if (content) content.style.display = 'none';
+            lic.style.display = 'block';
+            window.scrollTo(0, 0);
+            if (tick) setTimeout(function() { tick.focus(); }, 50);
+            document.addEventListener('keydown', _licenceEsc);
+        }
+        function licenceTicked() {
+            var tick = document.getElementById('licence-tick');
+            var go = document.getElementById('licence-continue');
+            if (go) go.disabled = !(tick && tick.checked);
+        }
+        function licenceBack() {
+            var content = document.querySelector('#landing-screen .landing-content:not(#licence-screen)');
+            var lic = document.getElementById('licence-screen');
+            document.removeEventListener('keydown', _licenceEsc);
+            if (lic) lic.style.display = 'none';
+            if (content) content.style.display = '';
+        }
+        function licenceContinue() {
+            var tick = document.getElementById('licence-tick');
+            if (!tick || !tick.checked) return;
+            document.removeEventListener('keydown', _licenceEsc);
+            enterGame();
+        }
+        function _licenceEsc(e) { if (e.key === 'Escape') { e.stopPropagation(); licenceBack(); } }
         function enterGame() {
             // Audio: init on first click, then start intro piano pad
             // Uses resume().then() to ensure AudioContext is running before starting playback
