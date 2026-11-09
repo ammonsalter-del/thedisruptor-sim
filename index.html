@@ -11351,6 +11351,9 @@ const PIVOT_OBJECTIVES_POOL = [
 
             // Use sub-popup if available (in modal context), otherwise create a standalone overlay
             if (typeof openSubPopup === 'function') {
+                // Opened only from the end page (z-index 10005): lift the sub-popup above it
+                var _subOverlay = document.getElementById('sub-popup-overlay');
+                if (_subOverlay) _subOverlay.style.zIndex = '10010';
                 openSubPopup('Pantheon of Innovation', h, { icon: '\uD83C\uDFDB\uFE0F', width: '680px' });
             } else {
                 // Standalone overlay for end-game screen
@@ -107495,6 +107498,10 @@ return 'You accept the dependency\u2014no immediate disruption, but you remain v
             if (G.gameOver && G.gameOverReason === 'dismissed') {
                 return showCIODismissalScreen();
             }
+            // The three years are over: stop the clock for good, as probation does
+            G.gameOver = true;
+            G.gameOverReason = 'tenure_complete';
+            try { setSpeed(0); } catch(e) { G.speed = 0; G.paused = true; }
             // Audio: victory fanfare + speech
             try { SoundManager.playEffect('victory'); } catch(e) {}
             var overlay = document.getElementById('boardroom-overlay');
@@ -107681,7 +107688,6 @@ return 'You accept the dependency\u2014no immediate disruption, but you remain v
             html += '<div style="font-size:24px;color:white;opacity:0.7;margin-left:12px;">\u203A</div>';
             html += '</div></div>';
 
-            html += '<button onclick="document.getElementById(\'boardroom-overlay\').style.display=\'none\';document.getElementById(\'boardroom-overlay\').innerHTML=\'\';" style="padding:10px 28px;background:#f8fafc;color:#1e293b;border:1px solid #cbd5e1;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;margin-right:8px;">Close</button>';
             html += '<button onclick="showISO56001TrainingPopup()" style="padding:10px 28px;background:#f8fafc;color:#6366f1;border:1px solid #c7d2fe;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;">Links to ISO Innovation Management Standard</button>';
             html += '<br><br>';
             html += '<button onclick="showPantheonGallery()" style="padding:10px 28px;background:#fafaf9;color:#78716c;border:1px solid #d6d3d1;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;">🏛️ Pantheon — Learn more about the influential thinkers in corporate entrepreneurship and innovation</button>';
