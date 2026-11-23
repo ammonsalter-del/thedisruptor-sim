@@ -1,5 +1,9 @@
+# Licences: the educational content (text, scenarios, characters, pictures, documents)
+# is CC BY-NC-SA 4.0; the software (source code) is PolyForm Noncommercial 1.0.0.
+# CFF has one licence field for the whole work, so both are listed there; see LICENSING.md
+# for which covers what.
 cff-version: 1.2.0
-title: "The Disruptor: An Innovation Management and Corporate Entrepreneurship Simulation"
+title: "The Disruptor: A Corporate Entrepreneurship & Innovation Simulation"
 message: "If you use this simulation in research or teaching, please cite it as below."
 type: software
 authors:
@@ -7,9 +11,19 @@ authors:
     given-names: Ammon
     affiliation: "Warwick Business School, University of Warwick"
     orcid: "https://orcid.org/0000-0003-2065-1268"
+abstract: >-
+  A free browser simulation for teaching corporate entrepreneurship and
+  innovation management. The player becomes Chief Innovation Officer of
+  Vélox Dynamics, a fictional fitness equipment manufacturer in Vilvoorde,
+  Belgium, on a three-year brief or a one-year probation, and runs sixteen
+  connected systems under a management board that sets a goal and three
+  objectives each year. It runs from its own folder in a browser, with no
+  install, no server and no account.
 repository-code: "https://github.com/ammonsalter-del/thedisruptor-sim"
 url: "https://disruptorsim.org/"
-license: CC-BY-NC-SA-4.0
+license:
+  - CC-BY-NC-SA-4.0
+  - PolyForm-Noncommercial-1.0.0
 keywords:
   - corporate entrepreneurship
   - innovation management
@@ -28,6 +42,6 @@ keywords:
   - platform strategy
   - corporate venturing
   - intellectual property strategy
-  - ISO 56001
-version: 1.0.2
-date-released: "2026-09-24"
+  - generative AI
+version: "2.0.0"
+date-released: "2026-11-23"
