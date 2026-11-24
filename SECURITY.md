@@ -2,11 +2,11 @@
 
 ## Overview
 
-The Disruptor is a client-side educational game that runs entirely in the browser. It does not collect, transmit, or store personal data, and has no server-side components, databases, or authentication systems.
+The Disruptor is a client-side educational game that runs in the browser. It does not collect, transmit, or store personal data, and has no user accounts or authentication systems. In Version 2, a Forge game sends its results for each year and the time played, with nothing personal, so that players can compare their results; other versions send nothing.
 
 ## Scope
 
-Because the game is a single HTML file with no backend, the attack surface is minimal. There are no user accounts, no stored credentials, and no network requests to game servers.
+Because the game runs in the browser from its own folder of files, the attack surface is small. There are no user accounts and no stored credentials. The only data the game sends is the anonymous Forge results described above.
 
 The game does include:
 - An optional Google Drive iframe for viewing the case study PDF
@@ -14,13 +14,13 @@ The game does include:
 
 ## The CEO Reflection Tool (Katrien)
 
-The game links to an optional reflection tool built on Claude artefacts, in which players can discuss their end-of-game report with the fictional CEO. Using it requires a free Claude account, and the player chooses to upload their own report PDF to Claude (Anthropic). The game itself transmits nothing; anything shared with the tool is governed by Anthropic's terms and privacy policy, and players who prefer not to upload their report can simply skip the tool.
+The game links to an optional reflection tool built on Claude artefacts, in which players can discuss their end-of-game report with the fictional CEO. Using it requires a free Claude account, and the player chooses to upload their own report PDF to Claude (Anthropic). The game itself sends nothing to the tool; anything shared with the tool is governed by Anthropic's terms and privacy policy, and players who prefer not to upload their report can simply skip the tool.
 
 ## For University IT and Data Protection Teams
 
-The Disruptor processes **no personal data at all**: no accounts, no logins, no cookies, no analytics, no data transmitted to game servers (there are none). Game state exists only in the player's browser. Under GDPR there is nothing to assess — no personal data is collected, so no consent banner, DPIA, or processor agreement is needed. The full source code is public in this repository, so every claim can be verified by inspection. Institutions preferring zero network activity can download the HTML file and run it locally.
+The Disruptor processes **no personal data at all**: no accounts, no logins, no cookies. A Forge game sends its results for each year and the time played, with nothing personal; other versions send nothing. All play is anonymous. Game state exists only in the player's browser. Under GDPR there is nothing to assess — no personal data is collected, so no consent banner, DPIA, or processor agreement is needed. The full source code is public in this repository, so every claim can be verified by inspection. Institutions preferring zero network activity can download the game's folder and run it locally without a connection.
 
-The one point of judgement is the optional Katrien reflection tool described above: a student who chooses to use it uploads their own game report to Claude under their own free account, in the same way they might paste text into any AI assistant. The game transmits nothing itself, and the tool is entirely skippable.
+The one point of judgement is the optional Katrien reflection tool described above: a student who chooses to use it uploads their own game report to Claude under their own free account, in the same way they might paste text into any AI assistant. The game sends nothing to the tool itself, and the tool is entirely skippable.
 
 ## Reporting a Vulnerability
 
